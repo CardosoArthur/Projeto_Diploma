@@ -1,0 +1,5 @@
+flask         # Necessário para a API (somente na pasta api)
+psycopg2-binary # Para conectar ao PostgreSQL
+pika          # Para conectar ao RabbitMQ
+
+
