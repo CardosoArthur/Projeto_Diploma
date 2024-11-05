@@ -1,4 +1,4 @@
-psycopg2-binary # Para conectar ao PostgreSQL
+mysql.connector # Para conectar ao mySQL
 pika          # Para conectar ao RabbitMQ
 jinja2        # Para templates HTML no Worker
 pdfkit        # Para gerar PDFs a partir de HTML (no Worker)

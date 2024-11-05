@@ -1,29 +1,30 @@
 version: '3.8'
 services:
   database:
-    image: postgres:latest
+    image: mysql:latest
     environment:
-      POSTGRES_USER: usuario
-      POSTGRES_PASSWORD: senha
-      POSTGRES_DB: diplomas
+      MYSQL_USER: usuario          # substitua 'usuario' pelo nome do usuário desejado
+      MYSQL_PASSWORD: senha        # substitua 'senha' pela senha desejada
+      MYSQL_DATABASE: diplomas     # nome do banco de dados
+      MYSQL_ROOT_PASSWORD: root_password # define uma senha para o usuário root
     ports:
-      - "5432:5432"
+      - "3306:3306"                # porta padrão do MySQL
 
   rabbitmq:
     image: rabbitmq:3-management
     ports:
-      - "5672:5672"  # porta para conexão
-      - "15672:15672" # porta para interface de administração
+      - "5672:5672"                # porta para conexão com a fila
+      - "15672:15672"              # porta para a interface de administração
 
   redis:
     image: redis:latest
     ports:
-      - "6379:6379"
+      - "6379:6379"                # porta padrão do Redis
 
   api:
     build: ./api
     ports:
-      - "5000:5000"
+      - "5000:5000"                # porta para a API
     depends_on:
       - database
       - rabbitmq

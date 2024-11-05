@@ -1,6 +1,6 @@
 import pdfkit
 import pika
-import psycopg2
+import mysql.connector  # Biblioteca de conexão MySQL
 from jinja2 import Template
 import json
 
@@ -8,9 +8,12 @@ import json
 connection = pika.BlockingConnection(pika.ConnectionParameters(host='rabbitmq'))
 channel = connection.channel()
 
-# Conexão com o banco de dados
-conn = psycopg2.connect(
-    dbname="diplomas", user="usuario", password="senha", host="database"
+# Conexão com o banco de dados MySQL
+conn = mysql.connector.connect(
+    database="diplomas",
+    user="usuario",
+    password="senha",
+    host="database"
 )
 cur = conn.cursor()
 
@@ -45,7 +48,8 @@ def callback(ch, method, properties, body):
     pdf = pdfkit.from_string(html_content, False)
 
     # Atualizar o banco de dados com o PDF gerado
-    cur.execute("UPDATE diplomas SET pdf=%s WHERE id=%s", (psycopg2.Binary(pdf), diploma_id))
+    query = "UPDATE diplomas SET pdf = %s WHERE id = %s"
+    cur.execute(query, (pdf, diploma_id))
     conn.commit()
 
     print("Diploma gerado e salvo no banco")
