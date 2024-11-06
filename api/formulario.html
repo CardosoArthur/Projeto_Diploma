@@ -8,9 +8,10 @@
 </head>
 <body>
     <h1>Gerar Certificado</h1>
-    <form action="/api/certificados" method="POST">
-        <label for="nome">Nome Completo:</label>
-        <input type="text" id="nome" name="nome" required>
+    <!-- Ação corrigida para corresponder à rota definida no app.py -->
+    <form action="/criar-diploma" method="POST">
+        <label for="aluno_nome">Nome Completo:</label>
+        <input type="text" id="aluno_nome" name="aluno_nome" required>
         
         <label for="curso">Curso:</label>
         <input type="text" id="curso" name="curso" required>

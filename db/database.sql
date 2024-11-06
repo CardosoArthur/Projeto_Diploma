@@ -1,3 +1,4 @@
+USE diplomas;
 CREATE TABLE certificados (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(255) NOT NULL,
@@ -5,3 +6,4 @@ CREATE TABLE certificados (
     data_conclusao DATE NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
