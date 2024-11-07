@@ -36,8 +36,14 @@ def formulario():
 def criar_diploma():
 
     aluno_nome = request.form.get('aluno_nome')
-    curso = request.form.get('curso')
+    nacionalidade = request.form.get('nacionalidade')
+    estado = request.form.get('estado')
+    data_nascimento = request.form.get('data_nascimento')
+    rg = request.form.get('rg')
     data_conclusao = request.form.get('data_conclusao')
+    curso = request.form.get('curso')
+    carga_horaria = request.form.get('carga_horaria')
+    data_emissao = request.form.get('data_emissao')
     
     
     if not aluno_nome or not curso or not data_conclusao:
@@ -52,8 +58,8 @@ def criar_diploma():
             host="database"
         )
         cur = conn.cursor()
-        cur.execute("INSERT INTO certificados (nome, curso, data_conclusao) VALUES (%s, %s, %s)", 
-                    (aluno_nome, curso, data_conclusao))
+        cur.execute("INSERT INTO certificados (nome, nacionalidade, estado, data_nascimento, rg, data_conclusao, curso, carga_horaria, data_emissao) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)", 
+                    (aluno_nome, nacionalidade, estado, data_nascimento, rg, data_conclusao, curso, carga_horaria, data_emissao))
         conn.commit()
         
         
@@ -66,12 +72,18 @@ def criar_diploma():
             body=json.dumps({
                 'diploma_id': diploma_id,
                 'aluno_nome': aluno_nome,
+                'nacionalidade': nacionalidade,
+                'estado': estado,
+                'data_nascimento': data_nascimento,
+                'rg':rg,
+                'data_conclusao':data_conclusao,
                 'curso': curso,
-                'data_conclusao': data_conclusao
+                'carga_horaria': carga_horaria,
+                'data_emdata_emissao':data_emissao
             })
-        )
+        )   
         
-        return jsonify({'status': 'Pedido enviado para processamento', 'diploma_id': diploma_id}), 201
+        return jsonify({'status': 'Informacoes inseridas no banco de dados', 'diploma_id': diploma_id}), 201
     
     except mysql.connector.Error as error:
         return jsonify({'error': str(error)}), 500

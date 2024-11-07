@@ -1,25 +1,116 @@
-<!-- arquivo: api/formulario.html -->
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulário de Certificado</title>
+    <title>Formulário de Preenchimento</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 2em;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 1.5em;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-top: 1em;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        input[type="number"] {
+            width: 100%;
+            padding: 0.75em;
+            margin-top: 0.5em;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus,
+        input[type="date"]:focus,
+        input[type="number"]:focus {
+            border-color: #333;
+        }
+
+        button {
+            width: 100%;
+            padding: 0.75em;
+            margin-top: 1.5em;
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #4cae4c;
+        }
+    </style>
 </head>
 <body>
-    <h1>Gerar Certificado</h1>
-    <!-- Ação corrigida para corresponder à rota definida no app.py -->
-    <form action="/criar-diploma" method="POST">
-        <label for="aluno_nome">Nome Completo:</label>
-        <input type="text" id="aluno_nome" name="aluno_nome" required>
-        
-        <label for="curso">Curso:</label>
-        <input type="text" id="curso" name="curso" required>
-        
-        <label for="data_conclusao">Data de Conclusão:</label>
-        <input type="date" id="data_conclusao" name="data_conclusao" required>
-        
-        <button type="submit">Enviar</button>
-    </form>
+    <div class="container">
+        <h1>Gerar Certificado</h1>
+        <form action="/criar-diploma" method="POST">
+            <label for="aluno_nome">Nome Completo:</label>
+            <input type="text" id="aluno_nome" name="aluno_nome" required>
+
+            <label for="nacionalidade">Nacionalidade:</label>
+            <input type="text" id="nacionalidade" name="nacionalidade" required>
+
+            <label for="estado">Estado:</label>
+            <input type="text" id="estado" name="estado" required>
+
+            <label for="data_nascimento">Data de Nascimento:</label>
+            <input type="date" id="data_nascimento" name="data_nascimento" required>
+            
+            <label for="rg">RG:</label>
+            <input type="text" id="rg" name="rg" required>
+
+            <label for="data_conclusao">Data de Conclusão:</label>
+            <input type="date" id="data_conclusao" name="data_conclusao" required>
+
+            <label for="curso">Curso:</label>
+            <input type="text" id="curso" name="curso" required>
+            
+            <label for="carga_horaria">Carga Horária:</label>
+            <input type="number" name="carga_horaria" id="carga_horaria">
+
+            <label for="data_emissao">Data de Emissão:</label>
+            <input type="date" id="data_emissao" name="data_emissao" required>
+            
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
 </body>
 </html>

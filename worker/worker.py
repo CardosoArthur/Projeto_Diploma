@@ -11,8 +11,8 @@ channel = connection.channel()
 # Conexão com o banco de dados MySQL
 conn = mysql.connector.connect(
     database="diplomas",
-    user="usuario",
-    password="senha",
+    user="arthur123",
+    password="123456",
     host="database"
 )
 cur = conn.cursor()
@@ -31,7 +31,6 @@ def render_template(data):
             curso=data['curso'],
             carga_horaria=data['carga_horaria'],
             data_emissao=data['data_emissao'],
-            nome_assinatura=data['nome_assinatura'],
             cargo=data['cargo']
         )
     return html_content

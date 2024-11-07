@@ -11,7 +11,7 @@ services:
       - "3306:3306"                # porta MySQL
     volumes:
       - ./db/database.sql:/docker-entrypoint-initdb.d/database.sql
-      - db_data:/var/lib/mysql  # Named volume for MySQL data
+     # - db_data:/var/lib/mysql  # Named volume for MySQL data
 
 
   rabbitmq:
