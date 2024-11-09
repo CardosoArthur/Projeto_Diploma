@@ -7,10 +7,10 @@ import os
 
 app = Flask(__name__)
 
-# Configuração do caminho do template no diretório api
+
 app.template_folder = "."
 
-# Função para tentar conexão ao RabbitMQ com retentativas
+# conexão ao RabbitMQ com retentativas
 def connect_to_rabbitmq(retries=5, delay=5):
     for attempt in range(retries):
         try:
@@ -33,6 +33,7 @@ def formulario():
 
 @app.route('/criar-diploma', methods=['POST'])
 def criar_diploma():
+    
     # Receber dados do formulário
     aluno_nome = request.form.get('aluno_nome')
     nacionalidade = request.form.get('nacionalidade')
@@ -44,7 +45,6 @@ def criar_diploma():
     carga_horaria = request.form.get('carga_horaria')
     data_emissao = request.form.get('data_emissao')
     
-    # Verificação de campos obrigatórios
     if not aluno_nome or not curso or not data_conclusao:
         return jsonify({'error': 'Por favor, preencha todos os campos'}), 400
 
@@ -65,7 +65,6 @@ def criar_diploma():
         cur.execute(query, values)
         conn.commit()
         
-        # Obter o ID do diploma recém-criado
         diploma_id = cur.lastrowid
         
         # Enviar apenas o diploma_id para a fila do RabbitMQ
@@ -80,7 +79,6 @@ def criar_diploma():
     except mysql.connector.Error as error:
         return jsonify({'error': str(error)}), 500
     finally:
-        # Fechar conexões com o banco de dados
         cur.close()
         conn.close()
 

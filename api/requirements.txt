@@ -1,5 +1,5 @@
-flask         # Necessário para a API (somente na pasta api)
-mysql-connector-python # Para conectar ao PostgreSQL
-pika          # Para conectar ao RabbitMQ
+flask         
+mysql-connector-python 
+pika
 
 

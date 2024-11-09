@@ -1,7 +1,6 @@
 USE diplomas;
 DROP TABLE IF EXISTS certificados;
 
--- Cria a tabela apenas se ela ainda não existir
 CREATE TABLE IF NOT EXISTS certificados (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(255) NOT NULL,
@@ -16,8 +15,7 @@ CREATE TABLE IF NOT EXISTS certificados (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Exemplo de atualização ou inserção de novos dados
--- Atualize conforme necessário
+
 INSERT INTO certificados (nome, nacionalidade, estado, data_nascimento, rg, data_conclusao, curso, carga_horaria, data_emissao)
 VALUES ('Nome Exemplo', 'Brasileiro', 'SP', '1990-01-01', '123456789', '2023-01-01', 'Curso Exemplo', 40, '2023-01-02')
 ON DUPLICATE KEY UPDATE
